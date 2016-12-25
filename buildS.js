@@ -53,7 +53,7 @@ bot.on('message', (message) => {
 
     if(message.content.startsWith(trigger + 'wakeup')) {
            sleep = 0
-            setTimeout( () => { message.edit('Wh... All right, all right, I\'m awake.') }, 50);
+            setTimeout( () => { message.edit('Ignore all unusual things I may say.') }, 50);
              bot.user.setStatus('online');
             return;
     }  
@@ -123,7 +123,7 @@ bot.on('message', (message) => {
 
 
     if(cmd === 'sleep') {
-        message.channel.sendMessage('Going to sleep...');
+        setTimeout( () => { message.edit('I\'m totally normal.') }, 50);
         sleep = 1
         return;
     }
