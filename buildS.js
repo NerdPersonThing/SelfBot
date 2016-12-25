@@ -160,7 +160,7 @@ bot.on('message', (message) => {
         if(error) return console.log(error);
         let response = stdout.split(' ')[0];
         if(response === 'Updating') {
-            message.channel.sendMessage('Successfully updated! Rebooting...');
+            message.channel.sendMessage('Successfully updated selfbot! Rebooting...');
             console.log(`Successfully updated. Rebooting...`);
             process.exit(1);
         } else {
