@@ -1,7 +1,7 @@
 function everything() {
 
 const trigger = '&';
-const version = 'S1.0.3';
+const version = 'S1.0.4';
 
 const config = require('../configSelf.json');
 const Discord = require('discord.js');
