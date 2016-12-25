@@ -53,7 +53,7 @@ bot.on('message', (message) => {
 
     if(message.content.startsWith(trigger + 'wakeup')) {
            sleep = 0
-            message.channel.sendMessage('Wh... All right, all right, I\'m awake.');
+            setTimeout( () => { message.edit('Wh... All right, all right, I\'m awake.') }, 50);
              bot.user.setStatus('online');
             return;
     }  
