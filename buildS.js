@@ -195,6 +195,9 @@ if(cmd === 'vriskbotrestart') {
 }); //end message event
 
 bot.on('messageDelete', (message) => {
+    if(message.author === bot.user) {
+        return;
+    }
     if(message.guild.id === '251182658720235521') {
         bot.channels.get('262959239427915776').sendMessage(`Message deleted from ${message.author.username} in KKK3: "${message}"`).catch(console.error);
         return;
@@ -204,10 +207,13 @@ bot.on('messageDelete', (message) => {
         return;
     }
     return;
-    
+
 });
 
 bot.on('messageUpdate', (oldMessage, newMessage) => {
+    if(oldMessage.author === bot.user) {
+        return;
+    }
     if(message.guild.id === '251182658720235521') {
         bot.channels.get('262959239427915776').sendMessage(`Message edited from ${message.author.username} in KKK3, from "${oldMessage}" to "${newMessage}"`).catch(console.error);
         return;
