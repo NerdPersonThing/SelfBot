@@ -218,16 +218,24 @@ bot.on('messageDelete', (message) => {
         return;
     }
     if(message.guild.id === '251182658720235521') {
-        bot.channels.get('262959239427915776').sendMessage(`Message deleted from ${message.author.username} in KKK3: \`${message}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`Message from ${message.author.username} deleted in KKK3: \`${message}\``).catch(console.error);
         return;
     }
     if(message.guild.id === '258760772413292546') {
-        bot.channels.get('262959239427915776').sendMessage(`Message deleted from ${message.author.username}in YCD: \`${message}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`Message from ${message.author.username} deleted in YCD: \`${message}\``).catch(console.error);
+        return;
+    }
+    if(message.guild.id === '260577188322082816') {
+        bot.channels.get('262959239427915776').sendMessage(`Message from ${message.author.username} deleted in Peace: \`${message}\``).catch(console.error);
+        return;
+    }
+    if(message.guild.id === '196653602801057793') {
+        bot.channels.get('262959239427915776').sendMessage(`Message from ${message.author.username} deleted in Homestak: \`${message}\``).catch(console.error);
         return;
     }
     return;
 
-});
+}); 
 
 bot.on('messageUpdate', (oldMessage, newMessage) => {
 
@@ -235,17 +243,25 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
         return;
     }
     if(oldMessage.guild.id === '251182658720235521') {
-        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${oldMessage.author.username} in KKK3, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`Message edited by ${oldMessage.author.username} in KKK3, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
         return;
     }
     if(oldMessage.guild.id === '258760772413292546') {
-        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${oldMessage.author.username} in YCD, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`Message edited by ${oldMessage.author.username} in YCD, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
+        return;
+    }
+    if(oldMessage.guild.id === '260577188322082816') {
+        bot.channels.get('262959239427915776').sendMessage(`Message edited by ${oldMessage.author.username} in Peace, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
+        return;
+    }
+    if(oldMessage.guild.id === '196653602801057793') {
+        bot.channels.get('262959239427915776').sendMessage(`Message edited by ${oldMessage.author.username} in Homestak, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
         return;
     }
     return;
 
 }); 
-
+//end message-delete and -edit events 
 
 
 
