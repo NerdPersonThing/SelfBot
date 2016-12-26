@@ -1,7 +1,7 @@
 function everything() {
 
 const trigger = '&';
-const version = 'S1.0.7';
+const version = 'S1.0.8';
 
 const config = require('../configSelf.json');
 const Discord = require('discord.js');
@@ -37,19 +37,6 @@ bot.on('message', (message) => {
     var origmsg = message.content;
     message.content = message.content.toLowerCase();
     
-    if(downshut === 1) {
-        if(message.content === 'y') {
-            shutdown();
-        } else if(message.content === 'n') {
-            message.channel.sendMessage('That was a close one!');
-            console.log('Shutdown canceled.');
-            downshut = 0
-            return;
-        } else {
-            return;
-        }
-    }
-
 
     if(message.content.startsWith(trigger + 'wakeup')) {
            sleep = 0
@@ -78,7 +65,7 @@ bot.on('message', (message) => {
     
     
     if(cmd === 'selfhelp') {
-        setTimeout( () => { message.edit('prune, purge, test, myid, setgame, nick, sleep, shutdown, vriskbotreboot, vriskbotshutdown, vriskbotstart, update, [shortcuts]') }, 50);
+        setTimeout( () => { message.edit('prune, purge, test, myid, setgame, nick, sleep, reboot, vriskbotreboot, vriskbotshutdown, vriskbotstart, update, [shortcuts]') }, 50);
     }
     
     if(cmd === 'prune') {
@@ -124,14 +111,15 @@ bot.on('message', (message) => {
     }
 
     if(cmd === 'setgame') {
-        let game = origargs.join(" ");
+        let game = origargs.join(' ');
         bot.user.setStatus(null, game);
         message.delete().catch(console.error);
         return;
     }
 
     if(cmd === 'nick') {
-
+        let nickname = origargs.join(' ');
+        message.member.setNickname(nickname);
     }
 
     if(cmd === 'sleep') {
@@ -140,9 +128,9 @@ bot.on('message', (message) => {
         return;
     }
 
-    if(cmd === 'shutdown') {
-        message.channel.sendMessage('Are you sure you want to shut down the bot? Y/N');
-        downshut = 1
+    if(cmd === 'reboot') {
+        console.log('Rebooting...');
+        shutdown();
         return;         
     }
     
