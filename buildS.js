@@ -75,7 +75,7 @@ bot.on('message', (message) => {
         .then(messages => {
             let msg_array = messages.array();
             msg_array = msg_array.filter(m => m.author.id === bot.user.id);
-            msg_array.length = messagecount + 1;
+            msg_array.length = messagecount;
             msg_array.map(m => m.delete().catch(console.error));
         }).catch(console.error);
     }
