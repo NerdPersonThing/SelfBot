@@ -120,11 +120,11 @@ bot.on('message', (message) => {
     }
 
     if(cmd === 'setgame') {
-        bot.user.setGame(origargs.join(' '));
-        message.delete();
+        let game = origargs.join(" ");
+        bot.user.setStatus(null, game);
+        message.delete().catch(console.error);
         return;
     }
-
 
     if(cmd === 'sleep') {
         setTimeout( () => { message.edit('I\'m totally normal.') }, 50);
