@@ -146,7 +146,7 @@ if(cmd === 'vriskbotrestart') {
 
     if(cmd === 'eval') {
         try {
-            var code = args.join(' ');
+            var code = origargs.join(' ');
             var evaled = eval(code);
 
             if (typeof evaled !== 'string') {
