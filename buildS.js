@@ -199,11 +199,11 @@ bot.on('messageDelete', (message) => {
         return;
     }
     if(message.guild.id === '251182658720235521') {
-        bot.channels.get('262959239427915776').sendMessage(`Message deleted from ${message.author.username} in KKK3: "${message}"`).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`Message deleted from ${message.author.username} in KKK3: \`${message}\``).catch(console.error);
         return;
     }
     if(message.guild.id === '258760772413292546') {
-        bot.channels.get('262959239427915776').sendMessage(`Message deleted from ${message.author.username}in YCD: "${message}"`).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`Message deleted from ${message.author.username}in YCD: \`${message}\``).catch(console.error);
         return;
     }
     return;
