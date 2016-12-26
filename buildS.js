@@ -118,8 +118,6 @@ bot.on('message', (message) => {
         message.delete();
         return;
     }
-    
-
 
 
     if(cmd === 'sleep') {
@@ -134,6 +132,16 @@ bot.on('message', (message) => {
         return;         
     }
     
+
+if(cmd === 'vriskbotrestart') {
+        child = exec("pm2 restart VriskBot", function (error, stdout, stderr) {
+            message.channel.sendMessage('Attempting to reboot VriskBot...');
+            console.log(`Attempting to reboot VriskBot...`);
+            if(error) return console.log(error);
+            return;
+            });
+        return;
+    }
 
 
     if(cmd === 'eval') {
