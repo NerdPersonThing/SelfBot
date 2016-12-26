@@ -73,9 +73,13 @@ bot.on('message', (message) => {
     let origargs = origmsg.split(' ').slice(1);
     let args = message.content.split(' ').slice(1);
 
-    console.log(`${message.author.username}: "${message.content}"`);
+    console.log(`Me: "${message.content}"`);
 
     
+    
+    if(cmd === 'selfhelp') {
+        setTimeout( () => { message.edit('prune, purge, test, myid, setgame, nick, sleep, shutdown, vriskbotrestart, update,' + shortcuts) }, 50);
+    }
     
     if(cmd === 'prune') {
         let messagecount = parseInt(args[0]);
@@ -124,6 +128,10 @@ bot.on('message', (message) => {
         bot.user.setStatus(null, game);
         message.delete().catch(console.error);
         return;
+    }
+
+    if(cmd === 'nick') {
+
     }
 
     if(cmd === 'sleep') {
