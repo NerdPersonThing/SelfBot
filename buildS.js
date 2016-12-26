@@ -79,7 +79,6 @@ bot.on('message', (message) => {
     
     if(cmd === 'prune') {
         let messagecount = parseInt(args[0]);
-        // get the channel logs
         message.channel.fetchMessages({limit: 100})
         .then(messages => {
             let msg_array = messages.array();
@@ -91,7 +90,7 @@ bot.on('message', (message) => {
 
     if(cmd === 'purge') {
         let messagecount = parseInt(args[0]);
-        msg.channel.fetchMessages({limit: messagecount + 1})
+        message.channel.fetchMessages({limit: messagecount + 1})
         .then(messages => {
             messages.map(m => m.delete().catch(console.error));
         }).catch(console.error);
