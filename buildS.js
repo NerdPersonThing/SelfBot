@@ -1,7 +1,7 @@
 function everything() {
 
 const trigger = '&';
-const version = 'S1.0.5';
+const version = 'S1.0.6';
 
 const config = require('../configSelf.json');
 const Discord = require('discord.js');
@@ -211,20 +211,21 @@ bot.on('messageDelete', (message) => {
 });
 
 bot.on('messageUpdate', (oldMessage, newMessage) => {
+
     if(oldMessage.author === bot.user) {
         return;
     }
-    if(message.guild.id === '251182658720235521') {
-        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${message.author.username} in KKK3, from "${oldMessage}" to "${newMessage}"`).catch(console.error);
+    if(oldMessage.guild.id === '251182658720235521') {
+        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${oldMessage.author.username} in KKK3, from "${oldMessage}" to "${newMessage}"`).catch(console.error);
         return;
     }
-    if(message.guild.id === '258760772413292546') {
-        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${message.author.username} in YCD, from "${oldMessage}" to "${newMessage}"`).catch(console.error);
+    if(oldMessage.guild.id === '258760772413292546') {
+        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${oldMessage.author.username} in YCD, from "${oldMessage}" to "${newMessage}"`).catch(console.error);
         return;
     }
     return;
 
-});
+}); 
 
 
 
