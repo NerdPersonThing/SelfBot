@@ -66,7 +66,7 @@ bot.on('message', (message) => {
     
     
     if(cmd === 'selfhelp') {
-        setTimeout( () => { message.edit('prune, purge, test, myid, setgame, nick, sleep, reboot, vriskbotreboot, vriskbotshutdown, vriskbotstart, update, [shortcuts]') }, 50);
+        setTimeout( () => { message.edit('prune, test, myid, setgame, nick, sleep, reboot, vriskbotreboot, vriskbotshutdown, vriskbotstart, update, [shortcuts]') }, 50);
     }
     
     if(cmd === 'prune') {
@@ -78,16 +78,7 @@ bot.on('message', (message) => {
             msg_array.length = messagecount;
             msg_array.map(m => m.delete().catch(console.error));
         }).catch(console.error);
-    }
-
-    if(cmd === 'purge') {
-        let messagecount = parseInt(args[0]);
-        message.channel.fetchMessages({limit: messagecount + 1})
-        .then(messages => {
-            messages.map(m => m.delete().catch(console.error));
-        }).catch(console.error);
-    }
-     
+    }  
     
     if(cmd === 'test') {
         message.delete();
