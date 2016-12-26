@@ -1,7 +1,7 @@
 function everything() {
 
 const trigger = '&';
-const version = 'S1.0.6';
+const version = 'S1.0.7';
 
 const config = require('../configSelf.json');
 const Discord = require('discord.js');
@@ -78,7 +78,7 @@ bot.on('message', (message) => {
     
     
     if(cmd === 'selfhelp') {
-        setTimeout( () => { message.edit('prune, purge, test, myid, setgame, nick, sleep, shutdown, vriskbotrestart, update, [shortcuts]') }, 50);
+        setTimeout( () => { message.edit('prune, purge, test, myid, setgame, nick, sleep, shutdown, vriskbotreboot, vriskbotshutdown, vriskbotstart, update, [shortcuts]') }, 50);
     }
     
     if(cmd === 'prune') {
@@ -147,16 +147,35 @@ bot.on('message', (message) => {
     }
     
 
-if(cmd === 'vriskbotrestart') {
+    if(cmd === 'vriskbotreboot') {
         child = exec("pm2 restart VriskBot", function (error, stdout, stderr) {
             message.channel.sendMessage('Attempting to reboot VriskBot...');
             console.log(`Attempting to reboot VriskBot...`);
             if(error) return console.log(error);
             return;
-            });
+            }).catch(console.error);
         return;
     }
 
+    if(cmd === 'vriskbotshutdown') {
+        child = exec("pm2 stop VriskBot", function (error, stdout, stderr) {
+            message.channel.sendMessage('Attempting to shut down VriskBot...');
+            console.log(`Attempting to shut down VriskBot...`);
+            if(error) return console.log(error);
+            return;
+            }).catch(console.error);
+        return;
+    }
+
+    if(cmd === 'vriskbotstart') {
+        child = exec("pm2 start VriskBot --watch", function (error, stdout, stderr) {
+            message.channel.sendMessage('Attempting to start VriskBot...');
+            console.log(`Attempting to start VriskBot...`);
+            if(error) return console.log(error);
+            return;
+            }).catch(console.error);
+        return;
+    }
 
     if(cmd === 'eval') {
         try {
@@ -167,10 +186,10 @@ if(cmd === 'vriskbotrestart') {
                 evaled = require('util').inspect(evaled);
             }
 
-            setTimeout( () => { message.edit(':arrow_right: CODE: \n\n `' + code + '`\n\n:white_check_mark: RESULT: \n\n`' + evaled + '`') }, 50);
+            setTimeout( () => { message.edit(`:arrow_right: CODE: \n\n \`${code}\`\n\n:white_check_mark: RESULT: \n\n\`${evaled}\``) }, 50);
             return;
         } catch(err) {
-            setTimeout( () => { message.edit(':arrow_right: CODE: \n\n `' + code + '`\n\n:octagonal_sign: ERROR: \n\n`' + err + '`') }, 50);
+            setTimeout( () => { message.edit(`:arrow_right: CODE: \n\n \`${code}\`\n\n:octagonal_sign: ERROR: \n\n\`${err}\``) }, 50);
             return;
         }
     }
@@ -216,11 +235,11 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
         return;
     }
     if(oldMessage.guild.id === '251182658720235521') {
-        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${oldMessage.author.username} in KKK3, from "${oldMessage}" to "${newMessage}"`).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${oldMessage.author.username} in KKK3, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
         return;
     }
     if(oldMessage.guild.id === '258760772413292546') {
-        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${oldMessage.author.username} in YCD, from "${oldMessage}" to "${newMessage}"`).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${oldMessage.author.username} in YCD, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
         return;
     }
     return;
