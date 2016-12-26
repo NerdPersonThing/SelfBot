@@ -153,7 +153,7 @@ bot.on('message', (message) => {
             console.log(`Attempting to reboot VriskBot...`);
             if(error) return console.log(error);
             return;
-            }).catch(console.error);
+            });
         return;
     }
 
@@ -163,7 +163,7 @@ bot.on('message', (message) => {
             console.log(`Attempting to shut down VriskBot...`);
             if(error) return console.log(error);
             return;
-            }).catch(console.error);
+            });
         return;
     }
 
@@ -173,7 +173,7 @@ bot.on('message', (message) => {
             console.log(`Attempting to start VriskBot...`);
             if(error) return console.log(error);
             return;
-            }).catch(console.error);
+            });
         return;
     }
 
