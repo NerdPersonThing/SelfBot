@@ -1,7 +1,7 @@
 function everything() {
 
 const trigger = '&';
-const version = 'S1.0.4';
+const version = 'S1.0.5';
 
 const config = require('../configSelf.json');
 const Discord = require('discord.js');
@@ -78,7 +78,7 @@ bot.on('message', (message) => {
     
     
     if(cmd === 'selfhelp') {
-        setTimeout( () => { message.edit('prune, purge, test, myid, setgame, nick, sleep, shutdown, vriskbotrestart, update,' + shortcuts) }, 50);
+        setTimeout( () => { message.edit('prune, purge, test, myid, setgame, nick, sleep, shutdown, vriskbotrestart, update, [shortcuts]') }, 50);
     }
     
     if(cmd === 'prune') {
@@ -193,6 +193,33 @@ if(cmd === 'vriskbotrestart') {
         });
     }
 }); //end message event
+
+bot.on('messageDelete', (message) => {
+    if(message.guild.id === '251182658720235521') {
+        bot.channels.get('262959239427915776').sendMessage(`Message deleted from ${message.author.username} in KKK3: "${message}"`).catch(console.error);
+        return;
+    }
+    if(message.guild.id === '258760772413292546') {
+        bot.channels.get('262959239427915776').sendMessage(`Message deleted from ${message.author.username}in YCD: "${message}"`).catch(console.error);
+        return;
+    }
+    return;
+    
+});
+
+bot.on('messageUpdate', (oldMessage, newMessage) => {
+    if(message.guild.id === '251182658720235521') {
+        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${message.author.username} in KKK3, from "${oldMessage}" to "${newMessage}"`).catch(console.error);
+        return;
+    }
+    if(message.guild.id === '258760772413292546') {
+        bot.channels.get('262959239427915776').sendMessage(`Message edited from ${message.author.username} in YCD, from "${oldMessage}" to "${newMessage}"`).catch(console.error);
+        return;
+    }
+    return;
+
+});
+
 
 
 
