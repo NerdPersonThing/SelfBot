@@ -66,7 +66,7 @@ bot.on('message', (message) => {
     
     
     if(cmd === 'selfhelp') {
-        setTimeout( () => { message.edit('prune, test, myid, setgame, nick, sleep, reboot, vriskbotreboot, vriskbotshutdown, vriskbotstart, update, [shortcuts]') }, 50);
+        setTimeout( () => { message.edit('test, prune, myid, setgame, listservers, nick, sleep, reboot, vriskbotreboot, vriskbotshutdown, vriskbotstart, update, [shortcuts]') }, 50);
     }
     
     if(cmd === 'prune') {
@@ -97,8 +97,8 @@ bot.on('message', (message) => {
     }
     
 
-    if(cmd === 'help') {
-        setTimeout( () => { message.edit(`null`) }, 50);
+    if(cmd === 'listservers') {
+        message.channel.sendMessage(`These are all the servers that I'm on: \`\`\`${bot.guilds.map(guild => guild).join(', ')}\`\`\``);
         return;
     }
 
@@ -255,6 +255,7 @@ console.log('Ready to initiate.');
 bot.on('ready', () => {
     console.log('Selfbot is up and running. Press CTRL+C to stop...');
     bot.channels.get('262249669692882946').sendMessage(`Selfbot online, version ${version}.`);
+    bot.user.setStatus('invisible');
 
 }); //end readylog
 
