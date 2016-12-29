@@ -166,10 +166,10 @@ bot.on('message', (message) => {
                 evaled = require('util').inspect(evaled);
             }
 
-            setTimeout( () => { message.edit(`:arrow_right: CODE: \n\n \`\`\`${code}\`\`\`\n\n:white_check_mark: RESULT: \n\n\`\`\`${evaled}\`\`\``) }, 50);
+            setTimeout( () => { message.edit(`:arrow_right: CODE: \n \`\`\`${code}\`\`\` \n:white_check_mark: RESULT: \n \`\`\`${evaled}\`\`\``) }, 50);
             return;
         } catch(err) {
-            setTimeout( () => { message.edit(`:arrow_right: CODE: \n\n \`\`\`${code}\`\`\`\n\n:octagonal_sign: ERROR: \n\n\`\`\`${err}\`\`\``) }, 50);
+            setTimeout( () => { message.edit(`:arrow_right: CODE: \n \`\`\`${code}\`\`\` \n:octagonal_sign: ERROR: \n \`\`\`${err}\`\`\``) }, 50);
             return;
         }
     }
