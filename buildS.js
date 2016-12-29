@@ -98,7 +98,7 @@ bot.on('message', (message) => {
     
 
     if(cmd === 'listservers') {
-        message.channel.sendMessage(`These are all the servers that I'm on: \`\`\`${bot.guilds.map(guild => guild).join(', ')}\`\`\``);
+        setTimeout( () => { message.edit(`These are all the servers that I'm on: \`\`\`${bot.guilds.map(guild => guild).join(', ')}\`\`\``) }, 50);
         return;
     }
 
