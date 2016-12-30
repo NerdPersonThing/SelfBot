@@ -24,7 +24,7 @@ var shortcuts = new Map([
   ["lenny", "( ͡° ͜ʖ ͡°)"],
   ["shrug", "¯\\_(ツ)_/¯"],
   ["tableflip", "(╯°□°）╯︵ ┻━┻"],
-  ["#raosted", "https://cdn.discordapp.com/attachments/251182658720235521/263044450299674624/raosted.gif"]
+  ["raosted", "https://cdn.discordapp.com/attachments/251182658720235521/263044450299674624/raosted.gif"]
 ]);
 
 
