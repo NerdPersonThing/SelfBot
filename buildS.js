@@ -9,6 +9,8 @@ const bot = new Discord.Client();
 var exec = require('child_process').exec;
 var sleep = 0;
 var downshut = 0;
+var fulltime = 'void';
+var datime = 'void';
 
 var path = require('path');
 var scriptName = path.basename(__filename); //writes name of JS file as scriptName
@@ -198,19 +200,19 @@ bot.on('messageDelete', (message) => {
         return;
     }
     if(message.guild.id === '251182658720235521') {
-        bot.channels.get('262959239427915776').sendMessage(`Message from ${message.author.username} deleted in KKK3: \`${message}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in KKK3: \`${message}\``).catch(console.error);
         return;
     }
     if(message.guild.id === '258760772413292546') {
-        bot.channels.get('262959239427915776').sendMessage(`Message from ${message.author.username} deleted in YCD: \`${message}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in YCD: \`${message}\``).catch(console.error);
         return;
     }
     if(message.guild.id === '260577188322082816') {
-        bot.channels.get('262959239427915776').sendMessage(`Message from ${message.author.username} deleted in Peace: \`${message}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in Peace: \`${message}\``).catch(console.error);
         return;
     }
     if(message.guild.id === '196653602801057793') {
-        bot.channels.get('262959239427915776').sendMessage(`Message from ${message.author.username} deleted in Homestak: \`${message}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in Homestak: \`${message}\``).catch(console.error);
         return;
     }
     return;
@@ -223,19 +225,19 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
         return;
     }
     if(oldMessage.guild.id === '251182658720235521') {
-        bot.channels.get('262959239427915776').sendMessage(`Message edited by ${oldMessage.author.username} in KKK3, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in KKK3, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
         return;
     }
     if(oldMessage.guild.id === '258760772413292546') {
-        bot.channels.get('262959239427915776').sendMessage(`Message edited by ${oldMessage.author.username} in YCD, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in YCD, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
         return;
     }
     if(oldMessage.guild.id === '260577188322082816') {
-        bot.channels.get('262959239427915776').sendMessage(`Message edited by ${oldMessage.author.username} in Peace, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in Peace, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
         return;
     }
     if(oldMessage.guild.id === '196653602801057793') {
-        bot.channels.get('262959239427915776').sendMessage(`Message edited by ${oldMessage.author.username} in Homestak, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in Homestak, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
         return;
     }
     return;
@@ -265,6 +267,21 @@ function shutdown() {
     console.log('Shutdown commencing...');
     process.exit(1);
     }
+
+function timestamp() {
+    let date = new Date();
+    
+    let yy = date.getFullYear();
+    let mm = date.getMonth()+1;
+    let dd = date.getDate();
+    let h = date.getHours(); h = (h < 10 ? "0" : "") + h;
+    let m = date.getMinutes(); m = (m < 10 ? "0" : "") + m;
+    let s = date.getSeconds(); s = (s < 10 ? "0" : "") + s;
+    
+    fulltime = `${yy}/${mm}/${dd}, ${h}:${m}:${s}`;
+    datime = `${h}:${m}:${s}`;
+
+}
 
 
 
