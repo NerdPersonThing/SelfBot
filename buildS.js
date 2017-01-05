@@ -226,6 +226,12 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
     if(oldMessage.author === bot.user) {
         return;
     }
+    let reg = new RegExp("^(http|https)://", "i");
+    let match = reg.test(oldMessage.content);
+    if(match == true) {
+        return;
+    }
+
     timestamp();
     if(oldMessage.guild.id === '251182658720235521') {
         bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in KKK3, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
