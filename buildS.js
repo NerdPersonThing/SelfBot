@@ -9,8 +9,8 @@ const bot = new Discord.Client();
 var exec = require('child_process').exec;
 var sleep = 0;
 var downshut = 0;
-var fulltime = 'void';
 var datime = 'void';
+var simptime = 'void';
 
 var path = require('path');
 var scriptName = path.basename(__filename); //writes name of JS file as scriptName
@@ -64,7 +64,7 @@ bot.on('message', (message) => {
     let args = message.content.split(' ').slice(1);
 
     timestamp();
-    console.log(`${fulltime}: Me: "${message.content}"`);
+    console.log(`${datime}: Me: "${message.content}"`);
 
     
     
@@ -200,6 +200,7 @@ bot.on('messageDelete', (message) => {
     if(message.author === bot.user) {
         return;
     }
+    timestamp();
     if(message.guild.id === '251182658720235521') {
         bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in KKK3: \`${message}\``).catch(console.error);
         return;
@@ -225,6 +226,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
     if(oldMessage.author === bot.user) {
         return;
     }
+    timestamp();
     if(oldMessage.guild.id === '251182658720235521') {
         bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in KKK3, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
         return;
@@ -257,8 +259,8 @@ console.log('Ready to initiate.');
 
 bot.on('ready', () => {
     timestamp();
-    console.log(`ALERT: ${fulltime}: Selfbot is up and running. Press CTRL+C to stop...`);
-    bot.channels.get('262249669692882946').sendMessage(`${fulltime}: Selfbot online, version ${version}.`);
+    console.log(`ALERT: ${datime}: Selfbot is up and running. Press CTRL+C to stop...`);
+    bot.channels.get('262249669692882946').sendMessage(`${datime}: Selfbot online, version ${version}.`);
     bot.user.setStatus('invisible');
 
 }); //end readylog
@@ -280,8 +282,8 @@ function timestamp() {
     let m = date.getMinutes(); m = (m < 10 ? "0" : "") + m;
     let s = date.getSeconds(); s = (s < 10 ? "0" : "") + s;
     
-    fulltime = `${yy}/${mm}/${dd}, ${h}:${m}:${s}`;
-    datime = `${h}:${m}:${s}`;
+    datime = `${yy}/${mm}/${dd}, ${h}:${m}:${s}`;
+    simptime = `${h}:${m}:${s}`;
 
 }
 
