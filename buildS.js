@@ -63,7 +63,8 @@ bot.on('message', (message) => {
     let origargs = origmsg.split(' ').slice(1);
     let args = message.content.split(' ').slice(1);
 
-    console.log(`Me: "${message.content}"`);
+    timestamp();
+    console.log(`${fulltime}: Me: "${message.content}"`);
 
     
     
@@ -255,8 +256,9 @@ console.log('Ready to initiate.');
 
 
 bot.on('ready', () => {
-    console.log('Selfbot is up and running. Press CTRL+C to stop...');
-    bot.channels.get('262249669692882946').sendMessage(`Selfbot online, version ${version}.`);
+    timestamp();
+    console.log(`ALERT: ${fulltime}: Selfbot is up and running. Press CTRL+C to stop...`);
+    bot.channels.get('262249669692882946').sendMessage(`${fulltime}: Selfbot online, version ${version}.`);
     bot.user.setStatus('invisible');
 
 }); //end readylog
