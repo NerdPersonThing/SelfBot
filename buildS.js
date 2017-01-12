@@ -202,29 +202,31 @@ bot.on('messageDelete', (message) => {
         return;
     }
     timestamp();
+    let pass = 0;
+    let server = 'void';
     
-    if(oldMessage.guild.id === '251182658720235521') {
+    if(message.guild.id === '251182658720235521') {
         pass = 1;
         server = "KKK3";
     }
-    if(oldMessage.guild.id === '258760772413292546') {
+    if(message.guild.id === '258760772413292546') {
         pass = 1;
         server = "YCD";
     }
-    if(oldMessage.guild.id === '260577188322082816') {
+    if(message.guild.id === '260577188322082816') {
         pass = 1;
         server = "Peace";
     }
-    if(oldMessage.guild.id === '196653602801057793') {
+    if(message.guild.id === '196653602801057793') {
         pass = 1;
         server = "Homestak";
     }
-    if(oldMessage.guild.id === '260575179325964300') {
+    if(message.guild.id === '260575179325964300') {
         pass = 1;
         server = "Dev";
     }
     if(pass === 1) {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in ${server}: \`${message}\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in ${server}: \`\`\`${message}\`\`\``).catch(console.error);
         return;
     }
     return;
@@ -237,7 +239,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
         return;
     }
     timestamp();
-    
+
     let reg = new RegExp("^(http://|https://|-play)", "i");
     let match = reg.test(oldMessage.content);
     let pass = 0;
@@ -267,7 +269,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
         server = "Dev";
     }
     if(pass === 1) {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in ${server}, from \`\`\`${oldMessage}\` to \`\`\`${newMessage}\`\`\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in ${server}, from \`\`\`${oldMessage}\`\`\` to \`\`\`${newMessage}\`\`\``).catch(console.error);
         return;
     }
     return;
