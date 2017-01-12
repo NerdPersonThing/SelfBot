@@ -227,7 +227,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
     if(oldMessage.author === bot.user) {
         return;
     }
-    let reg = new RegExp("^(http|https)://", "i");
+    let reg = new RegExp("^(http://|https://|-play)", "i");
     let match = reg.test(oldMessage.content);
     if(match == true) {
         return;
