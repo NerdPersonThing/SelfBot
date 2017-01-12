@@ -228,6 +228,14 @@ bot.on('messageDelete', (message) => {
         pass = 1;
         server = "Dev";
     }
+    if(oldMessage.type !== text) {
+        pass = 1;
+        server = "DM's";
+        if(message.channel.id === '210547933970563072') {
+            server = 'Overwatch'
+        }
+    }
+
     if(pass === 1) {
         bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in ${server}: \`\`\`${message}\`\`\``).catch(console.error);
         return;
@@ -274,6 +282,14 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
         pass = 1;
         server = "Dev";
     }
+    if(oldMessage.type !== text) {
+        pass = 1;
+        server = "DM's";
+        if(message.channel.id === '210547933970563072') {
+            server = 'Overwatch'
+        }
+    }
+    
     if(pass === 1) {
         bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in ${server}, from \`\`\`${oldMessage}\`\`\` to \`\`\`${newMessage}\`\`\``).catch(console.error);
         return;
