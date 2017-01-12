@@ -208,32 +208,35 @@ bot.on('messageDelete', (message) => {
     let pass = 0;
     let server = 'void';
     
-    if(message.guild.id === '251182658720235521') {
-        pass = 1;
-        server = "KKK3";
+    if(message.channel.type === 'text') {
+        if(message.guild.id === '251182658720235521') {
+            pass = 1;
+            server = "KKK3";
+        }
+        if(message.guild.id === '258760772413292546') {
+            pass = 1;
+            server = "YCD";
+        }
+        if(message.guild.id === '260577188322082816') {
+            pass = 1;
+            server = "Peace";
+        }
+        if(message.guild.id === '196653602801057793') {
+            pass = 1;
+            server = "Homestak";
+        }
+        if(message.guild.id === '260575179325964300') {
+            pass = 1;
+            server = "Dev";
+        }
     }
-    if(message.guild.id === '258760772413292546') {
-        pass = 1;
-        server = "YCD";
-    }
-    if(message.guild.id === '260577188322082816') {
-        pass = 1;
-        server = "Peace";
-    }
-    if(message.guild.id === '196653602801057793') {
-        pass = 1;
-        server = "Homestak";
-    }
-    if(message.guild.id === '260575179325964300') {
-        pass = 1;
-        server = "Dev";
-    }
-    if(message.channel.type !== 'text') {
+    if(message.channel.type === 'dm') {
         pass = 1;
         server = "DM's";
-        if(message.channel.id === '210547933970563072') {
-            server = 'Overwatch'
-        }
+    }
+    if(message.channel.type === 'group') {
+        pass = 1;
+        server = "Overwatch";
     }
 
     if(pass === 1) {
@@ -246,52 +249,56 @@ bot.on('messageDelete', (message) => {
 
 bot.on('messageUpdate', (oldMessage, newMessage) => {
 
-    if(oldMessage.author === bot.user) {
+    let message = oldMessage
+    if(message.author === bot.user) {
         return;
     }
-    if(oldMessage.author.bot) {
+    if(message.author.bot) {
         return;
     }
     timestamp();
 
     let reg = new RegExp("^(http://|https://|-play)", "i");
-    let match = reg.test(oldMessage.content);
+    let match = reg.test(message.content);
     let pass = 0;
     let server = 'void';
     if(match == true) {
         return;
     }
 
-    if(oldMessage.guild.id === '251182658720235521') {
-        pass = 1;
-        server = "KKK3";
+    if(message.channel.type === 'text') {
+        if(message.guild.id === '251182658720235521') {
+            pass = 1;
+            server = "KKK3";
+        }
+        if(message.guild.id === '258760772413292546') {
+            pass = 1;
+            server = "YCD";
+        }
+        if(message.guild.id === '260577188322082816') {
+            pass = 1;
+            server = "Peace";
+        }
+        if(message.guild.id === '196653602801057793') {
+            pass = 1;
+            server = "Homestak";
+        }
+        if(message.guild.id === '260575179325964300') {
+            pass = 1;
+            server = "Dev";
+        }
     }
-    if(oldMessage.guild.id === '258760772413292546') {
-        pass = 1;
-        server = "YCD";
-    }
-    if(oldMessage.guild.id === '260577188322082816') {
-        pass = 1;
-        server = "Peace";
-    }
-    if(oldMessage.guild.id === '196653602801057793') {
-        pass = 1;
-        server = "Homestak";
-    }
-    if(oldMessage.guild.id === '260575179325964300') {
-        pass = 1;
-        server = "Dev";
-    }
-    if(oldMessage.channel.type !== 'text') {
+    if(message.channel.type === 'dm') {
         pass = 1;
         server = "DM's";
-        if(oldMessage.channel.id === '210547933970563072') {
-            server = 'Overwatch'
-        }
+    }
+    if(message.channel.type === 'group') {
+        pass = 1;
+        server = "Overwatch";
     }
 
     if(pass === 1) {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in ${server}, from \`\`\`${oldMessage}\`\`\` to \`\`\`${newMessage}\`\`\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${message.author.username} in ${server}, from \`\`\`${oldMessage}\`\`\` to \`\`\`${newMessage}\`\`\``).catch(console.error);
         return;
     }
     return;
