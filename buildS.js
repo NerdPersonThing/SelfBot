@@ -237,8 +237,10 @@ bot.on('messageDelete', (message) => {
     }
 
     if(pass === 1) {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in ${server}: \`\`\`${message}\`\`\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${message.type}`).catch(console.error);
         return;
+        /*bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in ${server}: \`\`\`${message}\`\`\``).catch(console.error);
+        return;*/
     }
     return;
 
@@ -291,8 +293,10 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
     }
 
     if(pass === 1) {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in ${server}, from \`\`\`${oldMessage}\`\`\` to \`\`\`${newMessage}\`\`\``).catch(console.error);
+        bot.channels.get('262959239427915776').sendMessage(`${oldMessage.type}`).catch(console.error);
         return;
+        /*bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in ${server}, from \`\`\`${oldMessage}\`\`\` to \`\`\`${newMessage}\`\`\``).catch(console.error);
+        return;*/
     }
     return;
 
