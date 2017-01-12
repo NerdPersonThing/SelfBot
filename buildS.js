@@ -201,6 +201,9 @@ bot.on('messageDelete', (message) => {
     if(message.author === bot.user) {
         return;
     }
+    if(message.author.bot) {
+        return;
+    }
     timestamp();
     let pass = 0;
     let server = 'void';
@@ -236,6 +239,9 @@ bot.on('messageDelete', (message) => {
 bot.on('messageUpdate', (oldMessage, newMessage) => {
 
     if(oldMessage.author === bot.user) {
+        return;
+    }
+    if(oldMessage.author.bot) {
         return;
     }
     timestamp();
