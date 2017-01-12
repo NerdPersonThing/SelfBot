@@ -202,20 +202,29 @@ bot.on('messageDelete', (message) => {
         return;
     }
     timestamp();
-    if(message.guild.id === '251182658720235521') {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in KKK3: \`${message}\``).catch(console.error);
-        return;
+    
+    if(oldMessage.guild.id === '251182658720235521') {
+        pass = 1;
+        server = "KKK3";
     }
-    if(message.guild.id === '258760772413292546') {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in YCD: \`${message}\``).catch(console.error);
-        return;
+    if(oldMessage.guild.id === '258760772413292546') {
+        pass = 1;
+        server = "YCD";
     }
-    if(message.guild.id === '260577188322082816') {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in Peace: \`${message}\``).catch(console.error);
-        return;
+    if(oldMessage.guild.id === '260577188322082816') {
+        pass = 1;
+        server = "Peace";
     }
-    if(message.guild.id === '196653602801057793') {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in Homestak: \`${message}\``).catch(console.error);
+    if(oldMessage.guild.id === '196653602801057793') {
+        pass = 1;
+        server = "Homestak";
+    }
+    if(oldMessage.guild.id === '260575179325964300') {
+        pass = 1;
+        server = "Dev";
+    }
+    if(pass === 1) {
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in ${server}: \`${message}\``).catch(console.error);
         return;
     }
     return;
@@ -227,27 +236,38 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
     if(oldMessage.author === bot.user) {
         return;
     }
+    timestamp();
+    
     let reg = new RegExp("^(http://|https://|-play)", "i");
     let match = reg.test(oldMessage.content);
+    let pass = 0;
+    let server = 'void';
     if(match == true) {
         return;
     }
 
-    timestamp();
     if(oldMessage.guild.id === '251182658720235521') {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in KKK3, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
-        return;
+        pass = 1;
+        server = "KKK3";
     }
     if(oldMessage.guild.id === '258760772413292546') {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in YCD, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
-        return;
+        pass = 1;
+        server = "YCD";
     }
     if(oldMessage.guild.id === '260577188322082816') {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in Peace, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
-        return;
+        pass = 1;
+        server = "Peace";
     }
     if(oldMessage.guild.id === '196653602801057793') {
-        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in Homestak, from \`${oldMessage}\` to \`${newMessage}\``).catch(console.error);
+        pass = 1;
+        server = "Homestak";
+    }
+    if(oldMessage.guild.id === '260575179325964300') {
+        pass = 1;
+        server = "Dev";
+    }
+    if(pass === 1) {
+        bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${oldMessage.author.username} in ${server}, from \`\`\`${oldMessage}\` to \`\`\`${newMessage}\`\`\``).catch(console.error);
         return;
     }
     return;
