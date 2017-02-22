@@ -27,7 +27,7 @@ var shortcuts = new Map([
   ["shrug", "¯\\_(ツ)_/¯"],
   ["tableflip", "(╯°□°）╯︵ ┻━┻"],
   ["raosted", "https://cdn.discordapp.com/attachments/251182658720235521/263044450299674624/raosted.gif"],
-  ["exposed", "https://cdn.discordapp.com/attachments/251182759589052418/267815685193728000/exposed.gif"]
+  ["exposed", "https://cdn.discordapp.com/attachments/260575179325964300/283803851818270720/exposed2.gif"]
 ]);
 
 
@@ -132,7 +132,7 @@ bot.on('message', (message) => {
     
 
     if(cmd === 'vriskbotreboot') {
-        child = exec("pm2 restart VriskBot", function (error, stdout, stderr) {
+        child = exec("pm2 restart VriskBot --watch", function (error, stdout, stderr) {
             message.channel.sendMessage('Attempting to reboot VriskBot...');
             console.log(`Attempting to reboot VriskBot...`);
             if(error) return console.log(error);
