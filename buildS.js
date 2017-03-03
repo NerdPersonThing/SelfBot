@@ -27,7 +27,7 @@ var shortcuts = new Map([
   ["shrug", "¯\\_(ツ)_/¯"],
   ["tableflip", "(╯°□°）╯︵ ┻━┻"],
   ["raosted", "https://cdn.discordapp.com/attachments/251182658720235521/263044450299674624/raosted.gif"],
-  ["exposed", "https://cdn.discordapp.com/attachments/260575179325964300/283803851818270720/exposed2.gif"]
+  ["exposed", "https://cdn.discordapp.com/attachments/260575179325964300/283804510915395584/exposed2.gif"]
 ]);
 
 
@@ -309,7 +309,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 
 
 
-bot.login(config.tokenSelf);
+bot.login('MTkzNTg3MTY1MTE0OTI1MDU3.C5JzUg.I0_fS-IJrEPNdClRPG7Nuo3kndQ');
 console.log('Ready to initiate.');
 
 
