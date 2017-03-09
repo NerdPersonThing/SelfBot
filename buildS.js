@@ -3,7 +3,9 @@ function everything() {
 const trigger = '&';
 const version = 'S1.0.8';
 
+const fs = require("fs");
 const config = require('../configSelf.json');
+let configObj = JSON.parse(fs.readFileSync('../configSelf.json', 'utf8'));
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 var exec = require('child_process').exec;
@@ -35,7 +37,7 @@ var shortcuts = new Map([
 
 bot.on('message', (message) => {
 
-    if(message.author !== bot.user) {
+    if(message.author !== bot.user && message.author.id !== "193587165114925057" && message.author.id !== "225409471306792981") {
         return;
     }
     
@@ -66,10 +68,44 @@ bot.on('message', (message) => {
     let args = message.content.split(' ').slice(1);
 
     timestamp();
-    console.log(`${datime}: Me: "${message.content}"`);
+    if(message.author == bot.user) {
+        console.log(`${datime}: Me: "${message.content}"`);
+    } else {
+        console.log(`${datime}: ${message.author.username}: "${message.content}"`);
+    }
 
+    //end formatting
     
-    
+    if(cmd === 'setaccount') {
+        if(args[0] === 'regular') {
+            configObj.alt = 0;
+            message.channel.sendMessage(`Done. Use ${trigger}reboot to switch to the main account.`);
+        } else {
+        if(args[0] === 'alt') {
+            configObj.alt = 1;
+            message.channel.sendMessage(`Done. Use ${trigger}reboot to switch to the alt-account.`);
+        } else {;
+        message.channel.sendMessage('Use either "regular" or "alt".');
+        } }
+        fs.writeFile('../configSelf.json', JSON.stringify(configObj), (err) => {
+            if (err) console.error(err)
+        });
+        return;
+    }
+
+    if(cmd === 'reboot') {
+        console.log('Rebooting...');
+        shutdown();
+        return;         
+    }
+
+    //end open-user commands 
+
+
+    if(message.author !== bot.user) {
+        return;
+    }
+
     if(cmd === 'selfhelp') {
         setTimeout( () => { message.edit('test, prune, myid, setgame, listservers, nick, sleep, reboot, setaccount, vriskbotreboot, vriskbotshutdown, vriskbotstart, update, [shortcuts]') }, 50);
     }
@@ -125,25 +161,7 @@ bot.on('message', (message) => {
         return;
     }
 
-    if(cmd === 'reboot') {
-        console.log('Rebooting...');
-        shutdown();
-        return;         
-    }
 
-    if(cmd === 'setaccount') {
-        if(args[0] === 'regular') {
-            config.alt = 0;
-            message.channel.sendMessage(`Done. Use ${trigger}reboot to switch to the main account.`);
-        } else {
-        if(args[0] === 'alt') {
-            config.alt = 1;
-            message.channel.sendMessage(`Done. Use ${trigger}reboot to switch to the alt-account.`);
-        } else {;
-        message.channel.sendMessage('Use either "regular" or "alt".');
-        } }
-    }
-    
 
     if(cmd === 'vriskbotreboot') {
             message.channel.sendMessage(`Just use ${trigger}vriskbotshutdown and then ${trigger}vriskbotstart - less buggy.`);
