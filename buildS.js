@@ -7,6 +7,7 @@ const config = require('../configSelf.json');
 const Discord = require('discord.js');
 const bot = new Discord.Client();
 var exec = require('child_process').exec;
+var alt = config.alt;
 var sleep = 0;
 var downshut = 0;
 var datime = 'void';
@@ -70,7 +71,7 @@ bot.on('message', (message) => {
     
     
     if(cmd === 'selfhelp') {
-        setTimeout( () => { message.edit('test, prune, myid, setgame, listservers, nick, sleep, reboot, vriskbotreboot, vriskbotshutdown, vriskbotstart, update, [shortcuts]') }, 50);
+        setTimeout( () => { message.edit('test, prune, myid, setgame, listservers, nick, sleep, reboot, setaccount, vriskbotreboot, vriskbotshutdown, vriskbotstart, update, [shortcuts]') }, 50);
     }
     
     if(cmd === 'prune') {
@@ -129,16 +130,23 @@ bot.on('message', (message) => {
         shutdown();
         return;         
     }
+
+    if(cmd === 'setaccount') {
+        if(args[0] === 'regular') {
+            config.alt = 0;
+            message.channel.sendMessage(`Done. Use ${trigger}reboot to switch to the main account.`);
+        } else {
+        if(args[0] === 'alt') {
+            config.alt = 1;
+            message.channel.sendMessage(`Done. Use ${trigger}reboot to switch to the alt-account.`);
+        } else {;
+        message.channel.sendMessage('Use either "regular" or "alt".');
+        } }
+    }
     
 
     if(cmd === 'vriskbotreboot') {
-        child = exec("pm2 restart VriskBot --watch", function (error, stdout, stderr) {
-            message.channel.sendMessage('Attempting to reboot VriskBot...');
-            console.log(`Attempting to reboot VriskBot...`);
-            if(error) return console.log(error);
-            return;
-            });
-        return;
+            message.channel.sendMessage(`Just use ${trigger}vriskbotshutdown and then ${trigger}vriskbotstart - less buggy.`);
     }
 
     if(cmd === 'vriskbotshutdown') {
@@ -206,7 +214,7 @@ bot.on('messageDelete', (message) => {
     }
     timestamp();
     let pass = 0;
-    let server = 'void';
+    let server = message.guild.name;
     
     if(message.channel.type === 'text') {
         if(message.guild.id === '251182658720235521') {
@@ -243,6 +251,9 @@ bot.on('messageDelete', (message) => {
         bot.channels.get('262959239427915776').sendMessage(`${datime}: Message from ${message.author.username} deleted in ${server}: \`\`\`${message}\`\`\``).catch(console.error);
         return;
     }
+    if(pass === 0) {
+        bot.channels.get('289526101066252299').sendMessage(`${datime}: Message from ${message.author.username} deleted in ${server}: \`\`\`${message}\`\`\``).catch(console.error);
+    }
     return;
 
 }); 
@@ -261,7 +272,7 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
     let reg = new RegExp("^(http://|https://|-play)", "i");
     let match = reg.test(message.content);
     let pass = 0;
-    let server = 'void';
+    let server = message.guild.name;
     if(match == true) {
         return;
     }
@@ -301,6 +312,9 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
         bot.channels.get('262959239427915776').sendMessage(`${datime}: Message edited by ${message.author.username} in ${server}, from \`\`\`${oldMessage}\`\`\` to \`\`\`${newMessage}\`\`\``).catch(console.error);
         return;
     }
+    if(pass === 0) {
+        bot.channels.get('289526101066252299').sendMessage(`${datime}: Message edited by ${message.author.username} in ${server}, from \`\`\`${oldMessage}\`\`\` to \`\`\`${newMessage}\`\`\``).catch(console.error);
+    }
     return;
 
 }); 
@@ -308,9 +322,15 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
 
 
 
+if(alt === 0) {
+    bot.login(config.tokenSelf);
+    console.log('Ready to initiate on default account.');
+}
+if(alt === 1) {
+    bot.login(config.tokenAlt);
+    console.log('Ready to initiate on alt-account.');
+}
 
-bot.login('MTkzNTg3MTY1MTE0OTI1MDU3.C5JzUg.I0_fS-IJrEPNdClRPG7Nuo3kndQ');
-console.log('Ready to initiate.');
 
 
 
