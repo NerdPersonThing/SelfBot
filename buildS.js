@@ -113,10 +113,7 @@ bot.on('message', (message) => {
     
     if(cmd === 'prune') {
         l = 100
-        let messagecount = parseInt(args[0]);
-        if(args[1] == "max") {
-            l = 200
-        }
+        let messagecount = parseInt(args[0])+1;
         message.channel.fetchMessages({limit: l})
         .then(messages => {
             let msg_array = messages.array();
