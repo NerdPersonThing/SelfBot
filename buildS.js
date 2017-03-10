@@ -12,6 +12,7 @@ var exec = require('child_process').exec;
 var alt = config.alt;
 var sleep = 0;
 var downshut = 0;
+var l = 100;
 var datime = 'void';
 var simptime = 'void';
 
@@ -111,8 +112,12 @@ bot.on('message', (message) => {
     }
     
     if(cmd === 'prune') {
+        l = 100
         let messagecount = parseInt(args[0]);
-        message.channel.fetchMessages({limit: 100})
+        if(args[1] == "max") {
+            l = 2000
+        }
+        message.channel.fetchMessages({limit: l})
         .then(messages => {
             let msg_array = messages.array();
             msg_array = msg_array.filter(m => m.author.id === bot.user.id);
