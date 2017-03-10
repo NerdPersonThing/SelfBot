@@ -115,7 +115,7 @@ bot.on('message', (message) => {
         l = 100
         let messagecount = parseInt(args[0]);
         if(args[1] == "max") {
-            l = 2000
+            l = 1000
         }
         message.channel.fetchMessages({limit: l})
         .then(messages => {
