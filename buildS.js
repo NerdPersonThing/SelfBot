@@ -226,6 +226,7 @@ bot.on('message', (message) => {
 }); //end message event
 
 bot.on('messageDelete', (message) => {
+    
     if(message.author === bot.user) {
         return;
     }
@@ -234,7 +235,13 @@ bot.on('messageDelete', (message) => {
     }
     timestamp();
     let pass = 0;
-    let server = message.guild.name;
+
+    if(message.channel.type !== 'dm') {
+        let server = message.guild.name;
+    } else {
+        pass = 1;
+        server = "DM's";
+    }
     
     if(message.channel.type === 'text') {
         if(message.guild.id === '251182658720235521') {
@@ -258,10 +265,7 @@ bot.on('messageDelete', (message) => {
             server = "Dev";
         }
     }
-    if(message.channel.type === 'dm') {
-        pass = 1;
-        server = "DM's";
-    }
+
     if(message.channel.type === 'group') {
         pass = 1;
         server = "Overwatch";
