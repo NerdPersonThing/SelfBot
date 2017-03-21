@@ -235,9 +235,10 @@ bot.on('messageDelete', (message) => {
     }
     timestamp();
     let pass = 0;
-
+    let server = "null";
+    
     if(message.channel.type !== 'dm') {
-        let server = message.guild.name;
+        server = message.guild.name;
     } else {
         pass = 1;
         server = "DM's";
@@ -296,12 +297,13 @@ bot.on('messageUpdate', (oldMessage, newMessage) => {
     let reg = new RegExp("^(http://|https://|-play)", "i");
     let match = reg.test(message.content);
     let pass = 0;
+    let server = "null";
     if(match == true) {
         return;
     }
 
     if(message.channel.type !== 'dm') {
-        let server = message.guild.name;
+        server = message.guild.name;
     } else {
         pass = 1;
         server = "DM's";
