@@ -15,6 +15,7 @@ var downshut = 0;
 var l = 100;
 var datime = 'void';
 var simptime = 'void';
+var server = 'void';
 
 var path = require('path');
 var scriptName = path.basename(__filename); //writes name of JS file as scriptName
